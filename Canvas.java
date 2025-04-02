@@ -1,4 +1,3 @@
-
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -9,8 +8,9 @@ import javax.swing.*;
 public class Canvas extends JPanel{
     int x,y;
     Color color;
-    final static int STROKE_SIZE = 8;
+    int STROKE_SIZE = 8;
     List<ColorPoint> currentDrawPath = new ArrayList<>();
+    List<List<ColorPoint>> strokes = new ArrayList<>();
     int canvasWidth, canvasHeight;
 
     public Canvas(int width, int height){
@@ -43,6 +43,11 @@ public class Canvas extends JPanel{
 
             @Override
             public void mouseReleased(MouseEvent e) {
+                if(currentDrawPath != null && !currentDrawPath.isEmpty()){
+                    strokes.add(new ArrayList<>(currentDrawPath)); // add the most recent stroke to the list of all strokes
+                    System.out.println("Added New Stroke");
+                    System.out.println(strokes);
+                }
                 currentDrawPath = null;
             }
 
@@ -52,7 +57,7 @@ public class Canvas extends JPanel{
                 x = e.getX();
                 y = e.getY();
 
-                // used to be able to draw a line
+                // used to be able to draw a line 1)
                 Graphics2D g2d = (Graphics2D) getGraphics();
                 g2d.setColor(color);
                 if(!currentDrawPath.isEmpty()){
@@ -72,6 +77,20 @@ public class Canvas extends JPanel{
         };
         addMouseListener(ma);
         addMouseMotionListener(ma);
+    }
+
+    public void undoRecentStroke() {
+        if(!strokes.isEmpty()){
+            strokes.remove(strokes.size() -1 );
+            System.out.println("Most Recent stroke gone");
+            System.out.println(strokes);
+            revalidate();
+        }
+
+    }
+
+    public void setStrokeSize(int newSize) {
+        this.STROKE_SIZE = newSize;  // Update stroke size
     }
 
     public void setColor(Color color){

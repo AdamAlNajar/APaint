@@ -50,6 +50,39 @@ public class PaintGUI extends JFrame {
         springLayout.putConstraint(SpringLayout.NORTH, resetButton, 10, SpringLayout.NORTH, canvasPanel);
         springLayout.putConstraint(SpringLayout.WEST, resetButton, 150, SpringLayout.WEST, canvasPanel);
 
+        // 4. Undo Recent Stroke
+        JButton undoButton = new JButton("Undo");
+        undoButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                canvas.undoRecentStroke();
+            }
+        });
+        canvasPanel.add(undoButton);
+        springLayout.putConstraint(SpringLayout.NORTH, undoButton, 10, SpringLayout.NORTH, canvasPanel);
+        springLayout.putConstraint(SpringLayout.WEST, undoButton, 250, SpringLayout.WEST, canvasPanel);
+
+
+        // 5. Stroke Size Slider
+        JLabel strokeSizeLabel = new JLabel("Stroke Size:");
+        canvasPanel.add(strokeSizeLabel);
+        springLayout.putConstraint(SpringLayout.NORTH, strokeSizeLabel, 10, SpringLayout.SOUTH, resetButton);
+        springLayout.putConstraint(SpringLayout.WEST, strokeSizeLabel, 25, SpringLayout.WEST, canvasPanel);
+
+        JSlider strokeSizeSlider = new JSlider(JSlider.HORIZONTAL, 1, 20, 8);
+        strokeSizeSlider.setMajorTickSpacing(5);
+        strokeSizeSlider.setMinorTickSpacing(1);
+        strokeSizeSlider.setPaintTicks(true);
+        strokeSizeSlider.setPaintLabels(true);
+
+        strokeSizeSlider.addChangeListener(e -> {
+            int newSize = strokeSizeSlider.getValue();
+            canvas.setStrokeSize(newSize);  // Update the stroke size
+        });
+        canvasPanel.add(strokeSizeSlider);
+        springLayout.putConstraint(SpringLayout.NORTH, strokeSizeSlider, 10, SpringLayout.SOUTH, strokeSizeLabel);
+        springLayout.putConstraint(SpringLayout.WEST, strokeSizeSlider, 25, SpringLayout.WEST, canvasPanel);
+
         this.getContentPane().add(canvasPanel);
     }
 }
