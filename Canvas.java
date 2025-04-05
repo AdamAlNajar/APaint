@@ -8,7 +8,7 @@ import javax.swing.*;
 public class Canvas extends JPanel {
     int x, y;
     Color color;
-    int STROKE_SIZE = 8;
+    int STROKE_SIZE = 1;
     List<List<ColorPoint>> strokes = new ArrayList<>();
     int canvasWidth, canvasHeight;
     boolean isColorSelected = false;
