@@ -27,3 +27,20 @@ You can get JRE from [here](https://adoptium.net/temurin/releases/?version=24) i
 ## Project Roadmap / Status
 Everything that i plan to implement in the app can be found on [this](https://trello.com/b/1ucDwRYI/apaint) trello board. 
 You can offer suggestions to the drawing app in github issues, by creating an issue with (Suggestion) tag
+
+## Bug Reporting
+If you encouter something wrong while using the app, do not hesitate to open a github issue, after all this project is built by community. 
+### Steps to report bug
+1. Open issues tab under this repoistory
+2. erase the 2 (state:open) and (is:issue) tags
+3. Press: (New issue)
+
+### How to get me to respond to your bug
+1. Make sure your issue title is accurate
+2. make a detailed description of the following :
+- What did you do to get the bug
+- System details
+- Java JRE Version
+- What did you expect to happen and what actually happened
+- Screenshots of the application
+3. have the correct tag of (bug), otherwise your issue will be closed and not solved.
