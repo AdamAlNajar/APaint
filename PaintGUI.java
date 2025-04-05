@@ -60,18 +60,18 @@ public class PaintGUI extends JFrame {
         JPanel strokeSizePanel = new JPanel();  // Create a panel to hold the slider and label
         strokeSizePanel.setLayout(new BoxLayout(strokeSizePanel, BoxLayout.X_AXIS)); // Horizontal layout
 
-        JLabel strokeSizeLabel = new JLabel("Stroke Size: 8"); // Initial label text
+        JLabel strokeSizeLabel = new JLabel("Stroke Size -> 0 ------>"); // Initial label text
         strokeSizeLabel.setFont(font);
-        JSlider strokeSizeSlider = new JSlider(1, 100, 5); // Min = 1, Max = 100, Initial = 8
-        strokeSizeSlider.setMajorTickSpacing(10);
-        strokeSizeSlider.setMinorTickSpacing(1);
+        JSlider strokeSizeSlider = new JSlider(1, 100, 1); // Min = 1, Max = 100, Initial = 1
+        strokeSizeSlider.setMajorTickSpacing(0);
+        strokeSizeSlider.setMinorTickSpacing(0);
         strokeSizeSlider.setPaintTicks(true);
         strokeSizeSlider.setPaintLabels(true);
         strokeSizeSlider.addChangeListener(e -> {
             // Update stroke size on canvas when the slider is adjusted
             int newStrokeSize = strokeSizeSlider.getValue();
             canvas.setStrokeSize(newStrokeSize);
-            strokeSizeLabel.setText("Stroke Size: " + newStrokeSize); // Update label text
+            strokeSizeLabel.setText("Stroke Size -> " + newStrokeSize + " ------>"); // Update label text
         });
 
         // Add the label and slider to the panel
